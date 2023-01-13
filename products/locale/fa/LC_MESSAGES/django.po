@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-12 17:11+1100\n"
-"PO-Revision-Date: 2023-01-12 09:58+0330\n"
+"POT-Creation-Date: 2023-01-13 18:33+1100\n"
+"PO-Revision-Date: 2023-01-13 11:04+0330\n"
 "Last-Translator:   <ali1985reza@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -55,22 +55,26 @@ msgstr "توضیحات محصول"
 msgid "$"
 msgstr "تومان"
 
-#: templates/products/product_detail.html:55
+#: templates/products/product_detail.html:56
 msgid "Add to Cart"
 msgstr "اضافه به سبد خرید"
 
-#: templates/products/product_detail.html:59
+#: templates/products/product_detail.html:62
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: templates/products/product_detail.html:74
+#: templates/products/product_detail.html:77
 msgid "Product Description"
 msgstr "توضیحات محصول"
 
-#: templates/products/product_detail.html:150
+#: templates/products/product_detail.html:153
 msgid "Write your comment"
 msgstr "نظر خود را بنویسید"
 
-#: templates/products/product_detail.html:155
+#: templates/products/product_detail.html:158
 msgid "Submit"
 msgstr "ارسال"
+
+#: views.py:43
+msgid "Comment successfully created"
+msgstr "نظر شما با موفقیت شد"
