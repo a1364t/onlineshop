@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-20 18:51+1100\n"
-"PO-Revision-Date: 2023-01-13 18:18+0330\n"
-"Last-Translator:   <ali1985reza@gmail.com>\n"
+"PO-Revision-Date: 2023-01-20 11:33+0330\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,10 +20,9 @@ msgstr ""
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: models.py:15
-#, fuzzy
 #| msgid "Product Detail of"
 msgid "Product Image"
-msgstr "توضیحات محصول"
+msgstr "عکس محصول"
 
 #: models.py:34
 msgid "Very Bad"
@@ -102,7 +101,6 @@ msgstr "نظر شما با موفقیت ثبت شد"
 #~ msgstr "جمع کل"
 
 #, fuzzy
-#~| msgid "Add to Cart"
 #~ msgid "Go to Cart"
 #~ msgstr "اضافه به سبد خرید"
 

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-14 01:14+1100\n"
-"PO-Revision-Date: 2023-01-13 11:05+0330\n"
-"Last-Translator:   <ali1985reza@gmail.com>\n"
+"POT-Creation-Date: 2023-01-20 19:03+1100\n"
+"PO-Revision-Date: 2023-01-20 11:34+0330\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -27,18 +27,36 @@ msgstr "محصول با موفقیت به سبد خرید اضافه شد"
 msgid "Product successfully removed from cart"
 msgstr "محصول با موفقیت از سبد خرید حذف شد"
 
-#: templates/cart/cart_detail.html:63
+#: templates/cart/cart_detail.html:48 templates/cart/cart_detail.html:71
+#: templates/cart/cart_detail.html:110 templates/cart/cart_sidebar.html:28
+#: templates/cart/cart_sidebar.html:36
+msgid "$"
+msgstr "تومان"
+
+#: templates/cart/cart_detail.html:65
 msgid "Update"
 msgstr "تغییر"
 
-#: templates/cart/cart_detail.html:78
+#: templates/cart/cart_detail.html:80
 msgid "Cart is Empty! Please add some products to the cart"
 msgstr "سبد خرید شما خالی است! تعدادی کالا به سبد خرید اضافه کنید"
 
-#: templates/cart/cart_detail.html:79
+#: templates/cart/cart_detail.html:81
 msgid "Go Shopping"
 msgstr "رفتن به فروشگاه"
 
-#: templates/cart/cart_detail.html:108
-msgid "$"
-msgstr "تومان"
+#: templates/cart/cart_sidebar.html:10
+msgid "Cart"
+msgstr "سبد خرید"
+
+#: templates/cart/cart_sidebar.html:35
+msgid "Total"
+msgstr "مجموع"
+
+#: templates/cart/cart_sidebar.html:39
+msgid "Go to Cart"
+msgstr "رفتن به سبد خرید"
+
+#: templates/cart/cart_sidebar.html:40
+msgid "Checkout"
+msgstr "پرداخت"
