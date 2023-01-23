@@ -80,6 +80,7 @@
                                                     </div>
                                                         <form action="{% url 'cart:cart_add' product.id %}" method="POST">
                                                             {% csrf_token %}
+                                                            <input type="hidden" class="quantity-input" name="quantity" id="qty" value="1" min="1">
                                                             <div class="quantity-wrapper d-flex justify-content-center">
                                                                 <button type="submit" class="btn btn-small btn-bg-sand btn-color-dark px-3">
                                                                     {% trans 'Add to Cart' %}
