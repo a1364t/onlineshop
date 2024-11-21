@@ -5,13 +5,9 @@
 {% load persian_translation_tags %} 
 {% load humanize %} 
 
-
-{% load persian_translation_tags%} 
-
 {% block page_title %} 
     Order Create 
 {% endblock %} 
-
 
 {% block content %}
 <!-- Main Content Wrapper Start -->
@@ -26,9 +22,9 @@
             <h2>Order Details</h2>
           </div>
           <div class="checkout-form">
-            <!--{{ form|crispy }}-->
             <form action="" method="POST" class="form form--checkout">
-              {% csrf_token %} {% if form.errors %}
+              {% csrf_token %}
+              {% if form.errors %}
               <div class="alert alert-danger">{{ form.errors }}</div>
               {% endif %}
               <div class="form-row mb--20">

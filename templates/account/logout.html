@@ -4,12 +4,124 @@
     Log Out
 {% endblock %}
 
-
 {% block content %}
-    <h1>Log Out</h1>
-    <h3>Are you sure you want to logout?</h3>
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Yes, I am sure">
-    </form>
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper">
+        <div class="container">
+            <div class="row pt--50 pt-md--40 pt-sm--20"></div>
+            <div class="row pb--80 pb-md--60 pb-sm--40">
+                <!-- Log Out Area Start -->
+                <div class="col-lg-6 mx-auto">
+                    <div class="log-out-title text-center mt--10">
+                        <h2>Are You Sure You Want to Log Out?</h2>
+                    </div>
+                    <div class="log-out-form">
+                        <form action="" method="POST" class="form form--log-out">
+                            {% csrf_token %}
+                            <div class="form-row mb--20">
+                                <div class="form__group col-12 text-center">
+                                    <p>
+                                        You will be logged out of your account. Please confirm below:
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row mb--20">
+                                <div class="form__group col-12 text-center">
+                                    <input type="submit" value="Yes, I am sure" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-row mb--20">
+                            <div class="form__group col-12 text-center">
+                                <a href="{% url 'home' %}" class="btn btn-secondary">
+                                    Go Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Log Out Area End -->
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper End -->
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .main-content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .log-out-title h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .log-out-form {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .log-out-form .form__group {
+            margin-bottom: 20px;
+        }
+
+        .form__group p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .form__group input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 767px) {
+            .log-out-form {
+                padding: 20px;
+            }
+
+            .log-out-title h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
 {% endblock %}

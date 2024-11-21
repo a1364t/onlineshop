@@ -6,12 +6,35 @@
 Log In
 {% endblock %}
 
-
 {% block content %}
-    <h1>Log In</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" value="Log In">
-    </form>
+<!-- Main Content Wrapper Start -->
+<div class="main-content-wrapper">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm" style="border-radius: 10px; background-color: #ffffff;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 class="card-title text-center mb-4" style="font-size: 28px; font-weight: bold; color: #333;">Log In</h2>
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-block" style="padding: 5px 20px; font-size: 16px; border-radius: 8px;">
+                                    Log In
+                                </button>
+                            </div>
+                        </form>
+                        
+
+                        <div class="text-center mt-4">
+                            <a href="" style="font-size: 14px; color: #007bff;">Forgot your password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Content Wrapper End -->
 {% endblock %}

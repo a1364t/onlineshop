@@ -1,0 +1,93 @@
+{% extends '_base.html' %}
+
+
+{% block content %}
+<!-- Main Wrapper -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Card to contain message -->
+            <div class="card shadow-sm" style="border-radius: 10px; background-color: #ffffff;">
+                <div class="card-body" style="padding: 30px;">
+                    <!-- Title -->
+                    <h2 class="text-center mb-4" style="font-size: 32px; font-weight: bold; color: #007bff;">Verify11 Your E-mail Address</h2>
+                    
+                    <!-- Message Content -->
+                    <p class="text-center" style="font-size: 16px; color: #555;">
+                        We have sent a confirmation email to <strong>{{ email }}</strong> for verification. 
+                        Please follow the link provided to finalize the signup process.
+                    </p>
+                    
+                    <p class="text-center" style="font-size: 14px; color: #888;">
+                        If you do not see the verification email in your inbox, please check your spam folder.
+                    </p>
+
+                    <!-- Retry and Contact Links -->
+                    <div class="text-center mt-4">
+                        <a href="{% url 'account_resend_email' %}" class="btn btn-link" style="font-size: 14px; color: #007bff;">Didn't receive the email? Resend</a>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="{% url 'account_login' %}" style="font-size: 14px; color: #007bff;">Back to Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Wrapper -->
+
+{% block extra_styles %}
+<style>
+    /* Custom styles directly in the template */
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 40px;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        color: #333;
+    }
+
+    p {
+        font-family: 'Helvetica', sans-serif;
+        color: #555;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .btn-link {
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .text-center a {
+        font-size: 14px;
+        color: #007bff;
+    }
+
+    .text-center a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% load static %} {% load i18n %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>{% block page_title %}{% endblock page_title %}</title>
@@ -87,7 +87,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-7 col-12 p-0">
               <ul class="header-toolbar">
                 <li class="header-toolbar__item">
-                  <a href="wishlist.html" class="header-toolbar__btn mx-4">
+                  <a href="{% url 'wishlist:wishlist_view' %}" class="header-toolbar__btn mx-4">
                     <i class="flaticon flaticon-like"></i>
                   </a>
                 </li>
@@ -107,23 +107,23 @@
                   <ul class="user-info-menu">
                     {% if user.is_authenticated %}
                     <li>
-                      <a class="text-right" href="{% url 'account_logout' %}"
+                      <a class="text-left" href="{% url 'account_logout' %}"
                         >{% trans 'Log out' %}</a
                       >
                     </li>
                     <li>
-                      <a class="text-right" href="profile.html"
+                      <a class="text-left" href="profile.html"
                         >{% trans 'profile' %}</a
                       >
                     </li>
                     {% else %}
                     <li>
-                      <a class="text-right" href="{% url 'account_login' %}"
+                      <a class="text-left" href="{% url 'account_login' %}"
                         >{% trans 'Login' %}</a
                       >
                     </li>
                     <li>
-                      <a class="text-right" href="{% url 'account_signup' %}"
+                      <a class="text-left" href="{% url 'account_signup' %}"
                         >{% trans 'Signup' %}</a
                       >
                     </li>
