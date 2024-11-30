@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load humanize %}
+{% load custom_filters %}
 
 {% block page_title %}
     {% trans 'Payment Process' %}
@@ -41,7 +42,7 @@
                                 <tr>
                                     <td>{{ item.product.title }}</td>
                                     <td>{{ item.quantity }}</td>
-                                    <td>${{ item.total_price|intcomma:False }}</td>
+                                    <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -129,6 +130,7 @@
                 card: card,
                 billing_details: {
                     name: '{{ user.first_name }} {{ user.last_name }}',  // Use the customer's name dynamically
+                    email: '{{ user.email }}',
                 }
             }
         }).then(function(result) {

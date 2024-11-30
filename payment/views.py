@@ -1,10 +1,10 @@
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 from django.http import Http404
 from orders.models import Order
-from django.contrib import messages
-from django.shortcuts import render, redirect
 import stripe
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
 
@@ -58,7 +58,6 @@ def payment_success(request):
     order_items = order.items.all()  # This gets all associated OrderItem objects
 
     # Total price calculation
-    # Ensure this returns the correct price in dollars
     total_price = order.get_total_price()
 
     # Retrieve the payment intent ID from the query parameters
@@ -75,6 +74,26 @@ def payment_success(request):
             order.is_paid = True
             order.payment_status = 'Payment successful'
             order.save()
+
+            # Send a confirmation email to the user
+            subject = 'Order Confirmation'
+            html_message = render_to_string('payment/email_order_confirmation.html', {
+                'order': order,
+                'order_items': order_items,
+                'total_price': total_price,
+            })
+            # Assuming the order has a user with an email attribute
+            recipient_email = order.user.email
+
+            # Use EmailMessage to send HTML emails
+            email = EmailMessage(
+                subject=subject,
+                body=html_message,
+                from_email=settings.EMAIL_HOST_USER,
+                to=[recipient_email],
+            )
+            email.content_subtype = 'html'  # Set the email content to HTML
+            email.send(fail_silently=False)
 
             # Redirect to the success page or another URL as needed
             return render(request, 'payment/payment_success.html', {

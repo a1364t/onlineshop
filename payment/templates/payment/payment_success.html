@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load humanize %}
+{% load custom_filters %}
 
 {% block page_title %}
     {% trans 'Payment Success' %}
@@ -51,7 +52,7 @@
                                     <tr>
                                         <td>{{ item.product.title }}</td>
                                         <td>{{ item.quantity }}</td>
-                                        <td>${{ item.total_price|intcomma:False }}</td>
+                                        <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
