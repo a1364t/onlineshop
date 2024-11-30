@@ -1,0 +1,148 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block page_title %}
+    {% trans 'Payment Process' %}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+                        <h1 class="page-title">{% trans 'Payment Process' %}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content-wrapper">
+        <div class="page-content-inner ptb--80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8 m-auto">
+                        <h3 class="mb-5">{% trans 'Order Summary' %}</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{% trans 'Product' %}</th>
+                                    <th>{% trans 'Quantity' %}</th>
+                                    <th>{% trans 'Price' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in order_items %}
+                                <tr>
+                                    <td>{{ item.product.title }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>${{ item.total_price|intcomma:False }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" class="text-right">{% trans 'Total' %}</th>
+                                    <th>${{ total_price }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="my-5">
+                            <h3>{% trans 'Payment Information' %}</h3>
+                            <form id="payment-form" method="POST">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+
+                                <!-- Stripe Card Element -->
+                                <div class="form-group">
+                                    <label for="card-element" class="form-label font-weight-bold">{% trans 'Card Details' %}</label>
+                                    <div id="card-element" class="form-control p-3" style="height: 60px; border: 2px solid #ccc; border-radius: 8px; font-size: 16px; background-color: #f9f9f9;">
+                                        <!-- Stripe Element will be inserted here -->
+                                    </div>
+                                    <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                                </div>
+
+                                <button id="submit" class="btn btn-lg btn-bg-red btn-color-white btn-hover-2 mt-4 w-100">
+                                    {% trans 'Proceed to Payment' %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'cart/cart_sidebar.html' %}
+<div class="ShoppingYar-global-overlay"></div>
+
+{% block scripts %}
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable key
+    var stripe = Stripe("{{ stripe_public_key }}");
+    var elements = stripe.elements();
+
+    // Create an instance of the card Element
+    var card = elements.create('card', {
+        hidePostalCode: true,  // Hide postal code since you mentioned not needing it
+        style: {
+            base: {
+                fontSize: '16px',
+                lineHeight: '24px',
+                padding: '12px',
+                color: '#495057',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                '::placeholder': {
+                    color: '#888',
+                },
+                '::focus': {
+                    borderColor: '#007bff',
+                },
+            },
+        }
+    });
+
+    // Mount the card element to the DOM
+    card.mount('#card-element');
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    var cardErrors = document.getElementById('card-errors');
+    var submitButton = document.getElementById('submit');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Create a PaymentMethod and confirm the payment
+        stripe.confirmCardPayment("{{ client_secret }}", {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: '{{ user.first_name }} {{ user.last_name }}',  // Use the customer's name dynamically
+                }
+            }
+        }).then(function(result) {
+            if (result.error) {
+                // Show error to the customer
+                cardErrors.textContent = result.error.message;
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    // Redirect to the success page
+                    window.location.href = "{% url 'payment:payment_success' %}?payment_intent=" + result.paymentIntent.id;
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

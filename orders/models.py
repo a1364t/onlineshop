@@ -7,6 +7,7 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, verbose_name=_('User'))
     is_paid = models.BooleanField(_('Is Paid?'), default=False)
+    payment_status = models.CharField(max_length=50, blank=True, null=True)
 
     first_name = models.CharField(_('First Name'), max_length=100)
     last_name = models.CharField(_('Last Name'), max_length=100)

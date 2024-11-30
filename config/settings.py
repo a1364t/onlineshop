@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'cart',
     'persian_numbers',
     'orders',
+    'payment',
 ]
 
 SITE_ID = 1
@@ -215,3 +216,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+
+# Stripe settings
+
+STRIPE_TEST_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_SECRET_KEY")
