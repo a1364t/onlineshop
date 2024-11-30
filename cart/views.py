@@ -31,7 +31,8 @@ def add_to_cart_view(request, product_id):
     if form.is_valid():
         cleaned_data = form.cleaned_data
         quantity = cleaned_data['quantity']
-        cart.add(product, quantity, replace_current_quantity=cleaned_data['inplace'])
+        cart.add(product, quantity,
+                 replace_current_quantity=cleaned_data['inplace'])
 
     return redirect('cart:cart_detail')
 
@@ -52,7 +53,8 @@ def clear_cart(request):
 
     if len(cart):
         cart.clear()
-        messages.success(request, _('All products successfully removed from your cart.'))
+        messages.success(request, _(
+            'All products successfully removed from your cart.'))
     else:
         messages.warning(request, _('Your cart is already empty.'))
 

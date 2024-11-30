@@ -13,9 +13,9 @@
                     {% for item in cart %}
                         <li class="mini-cart__product d-flex justify-content-between">
                         <div class="mini-cart__product__image">
-                            <a href="#">
-                                <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                            </a>
+                        
+                                <img src="{{ item.product_obj.image.url }}" alt="product">
+                            
                         </div>
                         <div class="mini-cart__product__content pt-2">
                             <span class="mini-cart__product__title d-flex flex-row justify-content-between">
