@@ -7,8 +7,11 @@
 
 Hello from {{ site_name }}
 
-If you requested this email please click on the link below:
+Please clock on this link to activate your account.
 {{ activate_url }}
+
+Best regards,
+The Team
 
 {% endblocktrans %}
 {% endautoescape %}
