@@ -45,6 +45,9 @@
             >
               <nav class="main-navigation">
                 <div class="site-branding" style="margin-right: 30px">
+                  {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="rounded-circle" style="width: 30px; height: 30px;">
+                  {% else %}
                   <a href="{% url 'product_list' %}" class="logo">
                     <figure class="logo--normal d-none d-sm-block">
                       <img
@@ -54,6 +57,7 @@
                         alt="Logo"
                       />
                     </figure>
+                    {% endif %}
                   </a>
                 </div>
                 <div class="mainmenu-nav d-none d-lg-block w-100 pr-3">
@@ -112,7 +116,7 @@
                       >
                     </li>
                     <li>
-                      <a class="text-left" href="profile.html"
+                      <a class="text-left" href="{% url 'profile' %}"
                         >{% trans 'profile' %}</a
                       >
                     </li>
