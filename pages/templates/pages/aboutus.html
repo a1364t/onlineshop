@@ -1,5 +1,95 @@
 {% extends '_base.html' %}
 
+{% block page_title %}
+About Us - Tech Shop
+{% endblock %}
+
 {% block content %}
-    <h1>About Us</h1>
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="text-center mb-4">
+        <h1 class="display-4">About Tech Shop</h1>
+        <p class="lead">Learn more about this demo project.</p>
+    </div>
+
+    <!-- About the Project -->
+    <div class="mb-5">
+        <h2>About This Project</h2>
+        <p>This project is a demonstration of an online tech shop, showcasing features for a seamless shopping experience. It is designed to provide users with the ability to browse, purchase, and manage their accounts in a user-friendly environment.</p>
+    </div>
+
+    <!-- Payment Integration -->
+    <div class="mb-5">
+        <h2>Payment Integration</h2>
+        <p>This demo project is connected to <strong>Stripe</strong> for handling payments. Users can test the payment functionality using the following test card details:</p>
+        
+        <div class="row">
+            <!-- Successful Payment Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Successful Payment</h5>
+                        <p class="card-text">Use this card to simulate a successful payment transaction.</p>
+                        <ul>
+                            <li><strong>Card Number:</strong> 4242 4242 4242 4242</li>
+                            <li><strong>Expiry Date:</strong> Any valid future date (e.g., 12/34)</li>
+                            <li><strong>CVC:</strong> Any three digits (e.g., 123)</li>
+                        </ul>
+                        <p><em>Note: This is for testing purposes only and will not process real transactions.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Declined Payment Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Declined Payment</h5>
+                        <p class="card-text">Use this card to simulate a declined payment transaction.</p>
+                        <ul>
+                            <li><strong>Card Number:</strong> 4000 0000 0000 0002</li>
+                            <li><strong>Expiry Date:</strong> Any valid future date (e.g., 12/34)</li>
+                            <li><strong>CVC:</strong> Any three digits (e.g., 123)</li>
+                        </ul>
+                        <p><em>Note: This card simulates a declined payment response.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Not Enough Funds Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Not Enough Funds</h5>
+                        <p class="card-text">Use this card to simulate a transaction with insufficient funds.</p>
+                        <ul>
+                            <li><strong>Card Number:</strong> 4000 0000 0000 9995</li>
+                            <li><strong>Expiry Date:</strong> Any valid future date (e.g., 12/34)</li>
+                            <li><strong>CVC:</strong> Any three digits (e.g., 123)</li>
+                        </ul>
+                        <p><em>Note: This card simulates a payment failure due to insufficient funds.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Information -->
+    <div class="mb-5">
+        <h2>Shopping Cart</h2>
+        <p>Customers can browse products and add them to their shopping cart. However, to proceed with the payment process, customers must log in to their account. This step ensures the security of the transaction and enables order confirmation via email.</p>
+    </div>
+
+    <!-- Purchase Process -->
+    <div class="mb-5">
+        <h2>Order Confirmation</h2>
+        <p>Once a purchase is completed, an email will be sent to the customer with the order details. This ensures transparency and provides a record of the transaction for the customer.</p>
+    </div>
+
+    <!-- Account Requirements -->
+    <div class="mb-5">
+        <h2>Account Creation</h2>
+        <p>To use this demo, customers are required to create an account with a valid email address. After registration, users must confirm their email address to access all features. This step is crucial for testing the authentication and account management functionality.</p>
+    </div>
+</div>
 {% endblock %}

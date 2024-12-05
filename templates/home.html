@@ -1,11 +1,30 @@
 {% extends '_base.html' %}
 
 {% block page_title %}
-Home Page
+Tech Shop - Home Page
 {% endblock %}
 
-
 {% block content %}
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="text-center mb-4">
+        <h1 class="display-4">Welcome to Tech Shop</h1>
+        <p class="lead">Your one-stop shop for the latest gadgets, electronics, and accessories.</p>
+    </div>
 
-    <h1>Home Page Comming soon</h1>
+    <!-- Static Image Section -->
+    <div class="text-center mb-4">
+        <img src="/static/img/home/Home_Page.png" 
+             alt="Tech Shop Home" 
+             class="img-fluid rounded shadow-lg" 
+             style="max-width: 100%; height: auto;">
+    </div>
+
+    <!-- About Products Section -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Explore Our Range of Products</h2>
+        <p class="text-center">At Tech Shop, we offer a curated selection of the latest and most innovative tech products. From cutting-edge smartphones and high-performance laptops to immersive audio devices and smart home gadgets, our collection is designed to cater to tech enthusiasts and everyday users alike. Each product is carefully selected to ensure quality, reliability, and value for our customers.</p>
+        <p class="text-center">Stay tuned as we add more exciting products to our range, all backed by exceptional customer service and expert support.</p>
+    </div>
+</div>
 {% endblock %}
