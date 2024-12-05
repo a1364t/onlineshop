@@ -64,17 +64,17 @@
                       <a href="{% url 'home' %}" class="mainmenu__link">
                         <span class="mm-text">Home</span>
                       </a>
-                    </li>
+                    </li>                    
+                    <li class="mainmenu__item menu-item-has-children">
+                      <a href="{% url 'product_list' %}" class="mainmenu__link">
+                        <span class="mm-text">Products</span>
+                      </a>
+                    </li> 
                      <li class="mainmenu__item menu-item-has-children">
                       <a href="{% url 'aboutus' %}" class="mainmenu__link">
                         <span class="mm-text">About</span>
                       </a>
                     </li>
-                    {% comment %} <li class="mainmenu__item menu-item-has-children">
-                      <a href="#" class="mainmenu__link">
-                        <span class="mm-text">Pages</span>
-                      </a>
-                    </li>  {% endcomment %}
                     <li class="mainmenu__item">
                       <a href="https://alirezaportfolio.netlify.app" class="mainmenu__link" target="_blank" rel="noopener noreferrer">
                         <span class="mm-text">Contact me</span>
