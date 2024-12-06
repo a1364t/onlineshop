@@ -1,24 +1,28 @@
 {% extends '_base.html' %}
+{% load custom_filters humanize %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4">Update Profile</h1>
+    <h1 class="mb-4 text-center text-danger">Update Profile</h1>
+    
     <!-- Display Profile Picture if it exists -->
     {% if user.profile_picture %}
-        <div class="mb-3">
-            <label for="current_profile_picture" class="form-label">Current Profile Picture</label>
-            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+        <div class="mb-4 text-center">
+            <label for="current_profile_picture" class="form-label text-muted">Current Profile Picture</label><br>
+            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail rounded-circle" style="max-width: 150px; max-height: 150px;">
         </div>
     {% endif %}
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
         {% csrf_token %}
+        
         <div class="mb-3">
-            <label for="id_profile_picture" class="form-label"></label>
+            <label for="id_profile_picture" class="form-label ">Profile Picture</label>
             {{ form.profile_picture }}
         </div>  
+
         <div class="mb-3">
-            <label for="id_username" class="form-label">Username</label>
+            <label for="id_username" class="form-label ">Username</label>
             {{ form.username }}
         </div>
 
@@ -27,11 +31,53 @@
             {{ form.email }}
         </div>
 
-
-
-
-
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="btn btn-danger" style="width: 528px;">Save Changes</button>
     </form>
+
+    <hr class="my-5">
+
+    <h2 class="mb-4 text-center ">Order History</h2>
+    {% if orders %}
+        <div class="accordion" id="orderHistoryAccordion">
+            {% for order in orders %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ order.id }}">
+                        <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                            Order - {{ order.datetime_created|date:"d M Y, H:i" }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ order.id }}" data-bs-parent="#orderHistoryAccordion">
+                        <div class="accordion-body">
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-danger">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                        <tr>
+                                            <td>{{ item.product.title }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr class="table-secondary">
+                                        <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                                        <td><strong>${{ order|calculate_total_price }}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">You have no past orders.</p>
+    {% endif %}
 </div>
+
 {% endblock %}

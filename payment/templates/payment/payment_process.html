@@ -69,7 +69,7 @@
                                     <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                                 </div>
 
-                                <button id="submit" class="btn btn-lg btn-bg-red btn-color-white btn-hover-2 mt-4 w-100">
+                                <button id="submit" class="btn btn btn-bg-red btn-color-white btn-hover-2 mt-4 w-100">
                                     {% trans 'Proceed to Payment' %}
                                 </button>
                             </form>
@@ -93,7 +93,7 @@
 
     // Create an instance of the card Element
     var card = elements.create('card', {
-        hidePostalCode: true,  // Hide postal code since you mentioned not needing it
+        hidePostalCode: true,  
         style: {
             base: {
                 fontSize: '16px',
@@ -123,14 +123,15 @@
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+        
 
         // Create a PaymentMethod and confirm the payment
         stripe.confirmCardPayment("{{ client_secret }}", {
             payment_method: {
                 card: card,
                 billing_details: {
-                    name: '{{ user.first_name }} {{ user.last_name }}',  // Use the customer's name dynamically
-                    email: '{{ user.email }}',
+                    name: '{{ user.first_name }} {{ user.last_name }}', 
+                    phone: '{{ user.phone_number }}',
                 }
             }
         }).then(function(result) {

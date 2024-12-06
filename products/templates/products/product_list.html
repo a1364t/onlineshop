@@ -65,18 +65,18 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <span class="product-badge">Special Offer</span>
+                                                        {% comment %} <span class="product-badge">Special Offer</span> {% endcomment %}
                                                     </figure>
                                                     <div class="product-info">
                                                         <h3 class="product-title h6 mb--15">
                                                             <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
                                                         </h3>
                                                         <div class="product-price-wrapper mb--30">
-                                                            <span class="money text-success">{% trans '$' %}{{ product.price|intcomma:False }}</span>
-                                                            <span class="money-separator">-</span>
-                                                            <span class="old-price text-danger">
+                                                            <span class="money text-center text-success">{% trans '$' %}{{ product.price|intcomma:False }}</span>
+                                                            {% comment %}<span class="money-separator">-</span>
+                                                             <span class="old-price text-danger">
                                                                 <span class="money text-danger">$100</span>
-                                                            </span>
+                                                            </span> {% endcomment %}
                                                         </div>
                                                         <form action="{% url 'cart:cart_add' product.id %}" method="POST">
                                                             {% csrf_token %}
