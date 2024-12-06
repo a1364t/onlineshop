@@ -19,17 +19,20 @@ from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
+    path('', include('pages.urls')),
     path('products/', include('products.urls')),
     path('cart/', include('cart.urls')),
     path('orders/', include('orders.urls')),
     path('wishlist/', include('wishlist.urls')),
     path('payment/', include('payment.urls')),
+    path('reset-password/', auth_views.PasswordResetView.as_view(),
+         name='password_reset'),
 
 
     # Rosetta (i18n)
