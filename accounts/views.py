@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserChangeForm
 from orders.models import Order
+from allauth.account.views import PasswordResetFromKeyView
 
 
 @login_required
@@ -25,3 +26,7 @@ def profile(request):
         'orders': orders,
         # 'total_price': total_price,
     })
+
+
+class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
+    template_name = "account/password_reset_key_form.html"

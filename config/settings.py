@@ -207,8 +207,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_REDIRECT_URL = "home"
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Tech Shop'
-ACCOUNT_RESET_PASSWORD_TEMPLATE_NAME = 'account/password_reset_email.html'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Tech Shop '
+ACCOUNT_PASSWORD_RESET_EMAIL = "account/email/password_reset_key.html"
+# ACCOUNT_RESET_PASSWORD_TEMPLATE_NAME = 'accounts/password_reset_email.html'
 
 
 # crispy forms settings
