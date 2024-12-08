@@ -3,81 +3,113 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-danger">Update Profile</h1>
-    
-    <!-- Display Profile Picture if it exists -->
-    {% if user.profile_picture %}
-        <div class="mb-4 text-center">
-            <label for="current_profile_picture" class="form-label text-muted">Current Profile Picture</label><br>
-            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail rounded-circle" style="max-width: 150px; max-height: 150px;">
-        </div>
-    {% endif %}
+    <h1 class="mb-4 text-center">Profile Information</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="mb-5">
-        {% csrf_token %}
-        
-        <div class="mb-3">
-            <label for="id_profile_picture" class="form-label ">Profile Picture</label>
-            {{ form.profile_picture }}
-        </div>  
+    <!-- Profile Section -->
+    <div class="card shadow-sm p-4 mb-4">
+        <div class="row align-items-center mb-4">
+            <!-- Profile Picture -->
+            <div class="col-md-3 text-center">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" 
+                        class="img-thumbnail rounded-circle" style="width: 120px; height: 120px;">
+                {% else %}
+                    <div style="width: 120px; height: 120px; background-color: #ccc; border-radius: 50%;">
+                        <span style="display: block; line-height: 120px; text-align: center; color: #fff;">No Image</span>
+                    </div>
+                {% endif %}
+                <p class="text-muted mt-2">Profile Picture</p>
+            </div>
 
-        <div class="mb-3">
-            <label for="id_username" class="form-label ">Username</label>
-            {{ form.username }}
-        </div>
-
-        <div class="mb-3">
-            <label for="id_email" class="form-label">Email Address</label>
-            {{ form.email }}
-        </div>
-
-        <button type="submit" class="btn btn-danger" style="width: 528px;">Save Changes</button>
-    </form>
-
-    <hr class="my-5">
-
-    <h2 class="mb-4 text-center ">Order History</h2>
-    {% if orders %}
-        <div class="accordion" id="orderHistoryAccordion">
-            {% for order in orders %}
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading{{ order.id }}">
-                        <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
-                            Order - {{ order.datetime_created|date:"d M Y, H:i" }}
-                        </button>
-                    </h2>
-                    <div id="collapse{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ order.id }}" data-bs-parent="#orderHistoryAccordion">
-                        <div class="accordion-body">
-                            <table class="table table-sm table-bordered">
-                                <thead class="table-danger">
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in order.items.all %}
-                                        <tr>
-                                            <td>{{ item.product.title }}</td>
-                                            <td>{{ item.quantity }}</td>
-                                            <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    <tr class="table-secondary">
-                                        <td colspan="2" class="text-end"><strong>Total:</strong></td>
-                                        <td><strong>${{ order|calculate_total_price }}</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <!-- User Information -->
+            <div class="col-md-9">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Username:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="username" value="{{ user.username }}" 
+                                   class="form-control" readonly>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="email" name="email" value="{{ user.email }}" 
+                                   class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Profile Picture:</label>
+                        <div class="col-sm-9">
+                            {{ form.profile_picture }}
+                        </div>
+                    </div>
+                    <!-- Edit and Save Buttons -->
+                    <div class="text-end">
+                        <a href="{% url 'account_change_password' %}" class="btn btn-warning me-2" id="changePasswordButton">Change Password</a>
+                        <button type="button" class="btn btn-secondary me-2" id="editButton">Edit</button>
+                        <button type="submit" class="btn btn-primary d-none" id="saveButton">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History Section -->
+    <h1 class="fs-3 mb-4 text-center">Order History</h1>
+    {% if orders %}
+        <div class="card shadow-sm p-4">
+            <div class="accordion" id="orderHistoryAccordion">
+                {% for order in orders %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ order.id }}">
+                            <button class="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                                Order - {{ order.datetime_created|date:"d M Y, H:i" }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ order.id }}" data-bs-parent="#orderHistoryAccordion">
+                            <div class="accordion-body">
+                                <table class="table table-sm table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.items.all %}
+                                            <tr>
+                                                <td>{{ item.product.title }}</td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr class="table-secondary">
+                                            <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                                            <td><strong>${{ order|calculate_total_price }}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     {% else %}
         <p class="text-muted">You have no past orders.</p>
     {% endif %}
 </div>
 
+<script>
+    document.getElementById('editButton').addEventListener('click', function () {
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => input.removeAttribute('readonly'));
+        document.getElementById('saveButton').classList.remove('d-none');
+        this.classList.add('d-none');
+        document.getElementById('changePasswordButton').classList.add('d-none');
+    });
+</script>
 {% endblock %}
