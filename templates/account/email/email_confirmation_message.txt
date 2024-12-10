@@ -7,7 +7,7 @@
 
 Hello from {{ site_name }}
 
-Please clock on this link to activate your account.
+Please click on this link to activate your account.
 {{ activate_url }}
 
 Best regards,

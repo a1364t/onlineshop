@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse_lazy
 from .forms import CustomUserChangeForm
 from orders.models import Order
 from allauth.account.views import PasswordResetFromKeyView, PasswordChangeView
-from django.urls import reverse_lazy
 
 
 @login_required
@@ -41,4 +41,5 @@ class CustomPasswordChangeView(PasswordChangeView):
 
 
 class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
-    template_name = "account/password_reset_key_form.html"
+    template_name = "account/password_reset_from_key.html"
+    success_url = reverse_lazy('account_password_reset_from_key_done')
