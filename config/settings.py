@@ -35,7 +35,7 @@ DEBUG = env.bool("DJANGO_DEBUG")
 
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
-                 'https://onlineshop-dy8x.onrender.com']
+                 'https://onlineshop-dy8x.onrender.com', 'onlineshop-dy8x.onrender.com', '.onlineshop-dy8x.onrender.com']
 
 
 # Application definition
