@@ -10,7 +10,11 @@ python manage.py migrate
 # Create superuser if it doesn't exist
 python manage.py shell <<EOF
 import os
-from django.contrib.auth.models import User
+from django.apps import apps
+from django.contrib.auth import get_user_model
+
+# Get the custom user model
+User = get_user_model()
 
 username = os.getenv('DJANGO_SUPERUSER_USERNAME', 'admin')
 email = os.getenv('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
