@@ -13971,7 +13971,6 @@
       ? (module.exports = e)
       : (window.ResizeSensor = e);
 })();
-//# sourceMappingURL=maps/ResizeSensor.min.js.map
 
 /*=============================================
 =            10. Theia sticky sidebar      =
@@ -14247,7 +14246,6 @@
     );
   };
 })(jQuery);
-//# sourceMappingURL=maps/theia-sticky-sidebar.min.js.map
 
 /*=============================================
 =            11. Instafeed            =
@@ -18535,16 +18533,14 @@
     0 == a.length
       ? (this.$slider = t("<img />").prependTo(this.$mirror))
       : ((this.$slider = a.prependTo(this.$mirror)), (n = !0)),
-      this.$mirror
-        .addClass("parallax-mirror")
-        .css({
-          visibility: "hidden",
-          zIndex: this.zIndex,
-          position: "fixed",
-          top: 0,
-          left: 0,
-          overflow: "hidden",
-        }),
+      this.$mirror.addClass("parallax-mirror").css({
+        visibility: "hidden",
+        zIndex: this.zIndex,
+        position: "fixed",
+        top: 0,
+        left: 0,
+        overflow: "hidden",
+      }),
       this.$slider.addClass("parallax-slider").one("load", function () {
         (h.naturalHeight && h.naturalWidth) ||
           ((h.naturalHeight = this.naturalHeight || this.height || 1),
