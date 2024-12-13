@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'Open Sans';
-    font-weight: 400;
-    font-style: normal;
-    src: url('/static/fonts/OpenSans-Regular.woff2') format('woff2'),
-         url('/static/fonts/OpenSans-Regular.woff') format('woff');
-}
+
 
 /* converting english numbers to persian numbers */
 .ss02 {
