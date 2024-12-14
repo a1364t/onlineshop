@@ -45,19 +45,19 @@
             >
               <nav class="main-navigation">
                 <div class="site-branding" style="margin-right: 30px">
-                  {% if user.profile_picture %}
+                  {% comment %} {% if user.profile_picture %}
                     <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="rounded-circle" style="width: 30px; height: 30px;">
-                  {% else %}
+                  {% else %} {% endcomment %}
                   <a href="{% url 'product_list' %}" class="logo">
                     <figure class="logo--normal d-none d-sm-block">
                       <img
                         class="px-5"
-                        src="{% static 'img/Logo.png' %}"
+                        src="{% static 'img/favicon.ico' %}"
                         style="max-height: 50px; margin-bottom: -15px"
                         alt="Logo"
                       />
                     </figure>
-                    {% endif %}
+                    {% comment %} {% endif %} {% endcomment %}
                   </a>
                 </div>
                 <div class="mainmenu-nav d-none d-lg-block w-100 pr-3">

@@ -8,8 +8,8 @@ services:
       - .:/code
     ports:
       - 8000:8000
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     environment:
       - "DJANGO_SECRET_KEY=${DOCKER_COMPOSE_DJANGO_SECRET_KEY}"
       - "DJANGO_DEBUG=${DOCKER_COMPOSE_DJANGO_DEBUG}"
@@ -17,10 +17,10 @@ services:
       - "EMAIL_SERVER_PASSWORD=${DOCKER_COMPOSE_GMAIL_SERVER_PASSWORD}"
       - "STRIPE_PUBLIC_KEY=${DOCKER_COMPOSE_STRIPE_PUBLIC_KEY}"
       - "STRIPE_SECRET_KEY=${DOCKER_COMPOSE_STRIPE_SECRET_KEY}"
-  db:
-    image: postgres:14
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
-      - "POSTGRES_USER=postgres"
-      - "POSTGRESS_PASSWORD=postres"
-      - "POSTGRES_DB=postgres"
+  # db:
+  #   image: postgres:14
+  #   environment:
+  #     - "POSTGRES_HOST_AUTH_METHOD=trust"
+  #     - "POSTGRES_USER=postgres"
+  #     - "POSTGRESS_PASSWORD=postres"
+  #     - "POSTGRES_DB=postgres"
