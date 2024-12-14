@@ -62,7 +62,7 @@
         </p>
         <form class="confirmation-form" method="post" action="{% url 'account_confirm_email' confirmation.key %}">
             {% csrf_token %}
-            <button class="btn btn-primary btn-block confirm-button" style="background-color: #c2080f" type="submit">{% trans 'Confirm' %}</button>
+            <button class="btn btn-primary btn-block confirm-button" style="background-color: #c2080f; max-width: 128px" type="submit">{% trans 'Confirm' %}</button>
         </form>
     </div>
     {% else %}
