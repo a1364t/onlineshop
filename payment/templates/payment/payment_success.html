@@ -54,14 +54,14 @@
                                     <tr>
                                         <td>{{ item.product.title }}</td>
                                         <td>{{ item.quantity }}</td>
-                                        <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
+                                        <td>$ {{ item.price|multiply:item.quantity|intcomma:False }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="2" class="text-right font-weight-bold" style="font-size: 1.25rem;">{% trans 'Total' %}</th>
-                                        <th style="font-size: 1.25rem">${{ total_price }}</th>
+                                        <th style="font-size: 1.25rem">$ {{ total_price }}</th>
                                     </tr>
                                 </tfoot>
                             </table>
