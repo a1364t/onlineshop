@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8 m-auto">
                         <h3 class="mb-5">{% trans 'Order Summary' %}</h3>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>{% trans 'Product' %}</th>
@@ -42,14 +42,14 @@
                                 <tr>
                                     <td>{{ item.product.title }}</td>
                                     <td>{{ item.quantity }}</td>
-                                    <td>${{ item.price|multiply:item.quantity|intcomma:False }}</td>
+                                    <td>$ {{ item.price|multiply:item.quantity|intcomma:False }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="2" class="text-right">{% trans 'Total' %}</th>
-                                    <th>${{ total_price }}</th>
+                                    <th colspan="2" class="text-right" >{% trans 'Total' %}</th>
+                                    <th>$ {{ total_price }}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="card-element" class="form-label font-weight-bold">{% trans 'Card Details' %}</label>
                                     <div id="card-element" class="form-control p-3" style="height: 60px; border: 2px solid #ccc; border-radius: 8px; font-size: 16px; background-color: #f9f9f9;">
-                                        <!-- Stripe Element will be inserted here -->
+                                        <!-- Stripe Element was inserted here -->
                                     </div>
                                     <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                                 </div>

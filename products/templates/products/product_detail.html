@@ -36,12 +36,12 @@
                 <div class="row no-gutters mb--80">
                     <div class="col-12 col-sm-4 product-main-image d-flex align-content-center">
                         {% if product.image %}
-                            <img class="m-auto" style="max-height: 400px;" src="{{ product.image.url }}" alt="">
+                            <img class="m-auto" style="max-height: 400px;" src="{{ product.image.url }}" alt="product Image">
                         {% endif %}
                     </div>
                     <div class="col-12 col-sm-8 product-main-details mt-md--50">
-                        <div class="product-summary pl-lg--30 pl-md--0 text-left p-4">
-                            <h3 class="product-title mb--20" style="font-size: 2em; font-weight: bold;">{{ product.title }}</h3>
+                        <div class="product-summary pl-lg--30 pl-md--0 text-left p-4" style=" margin: 20px;">
+                            <h3 class="product-title mb--20" style="font-size: 1.5em; font-weight: bold;">{{ product.title }}</h3>
                             <p class="product-short-description mb--20" style="font-size: 1.2em; color: #555;">
                                 {{ product.short_description|truncatechars:300 }}
                             </p>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                                     <div class="product-reviews">
-                                        <h3 class="review__title" style="font-size: 1.5em; font-weight: bold;">{{ product.comments.all|only_active_comments|length }} comment(s) for {{ product.title }}</h3>
+                                        <h3 style="font-size: 1.2em;">{{ product.comments.all|only_active_comments|length }} comment(s) for {{ product.title }}</h3>
                                         <ul class="review__list">
                                             {% for comment in product.comments.all|only_active_comments %}
                                                 <li class="review__item">

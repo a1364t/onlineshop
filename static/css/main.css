@@ -24863,3 +24863,35 @@ a,
 .primary-bg {
   background-color: #c2080f;
 }
+
+/* Custom table styles in payment process*/
+.order-summary-table {
+  font-size: 14px;
+  border: 2px solid #ddd;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.order-summary-table th {
+  background-color: #f1f1f1;
+  text-align: left;
+}
+
+.order-summary-table td {
+  padding: 10px;
+}
+
+.order-summary-table tfoot th {
+  font-weight: bold;
+}
+
+.order-summary-table .total-price {
+  color: #ff4500;
+}
+
+
+/* profile order history */
+.custom-button-text {
+  font-size: 15px; 
+}
+
